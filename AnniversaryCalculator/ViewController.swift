@@ -96,10 +96,13 @@ class ViewController: UIViewController {
     }
     
     func configureDatePicker() {
-        datepicker.preferredDatePickerStyle = .wheels
         datepicker.sizeToFit()
         if #available(iOS 14.0, *) {
             datepicker.preferredDatePickerStyle = .inline
+        } else if #available(iOS 13.4, *) {
+            datepicker.preferredDatePickerStyle = .wheels
+        } else {
+            datepicker.datePickerMode = .date
         }
     }
     
