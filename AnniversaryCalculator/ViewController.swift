@@ -26,10 +26,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var button3: UIButton!
     @IBOutlet weak var button4: UIButton!
     
+    @IBOutlet weak var datepicker: UIDatePicker!
+    
     let specialDates = ["2021년\n03월 27일",
                         "2021년\n07월 05일",
                         "2021년\n10월 13일",
                         "2022년\n01월 21일"]
+    
+    var count = 0
 
     
     // MARK: - Init
@@ -43,6 +47,8 @@ class ViewController: UIViewController {
     // MARK: - Helper Functions
     
     func configureUI() {
+        configureDatePicker()
+        
         configureButtons(button1, title: specialDates[0])
         configureButtons(button2, title: specialDates[1])
         configureButtons(button3, title: specialDates[2])
@@ -53,10 +59,12 @@ class ViewController: UIViewController {
         configureImages(image3, name: "anni3")
         configureImages(image4, name: "anni4")
 
-        configureLabels(label1, title: "D+100")
-        configureLabels(label2, title: "D+200")
-        configureLabels(label3, title: "D+300")
-        configureLabels(label4, title: "D+400")
+        configureLabels(label1)
+        configureLabels(label2)
+        configureLabels(label3)
+        configureLabels(label4)
+        
+
     }
     
     func configureButtons(_ button: UIButton, title: String) {
@@ -76,14 +84,64 @@ class ViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
     }
     
-    func configureLabels(_ label: UILabel, title: String) {
-        label.text = title
+    func configureLabels(_ label: UILabel) {
+        label.text = ""
         label.font = .systemFont(ofSize: 25, weight: .bold)
         label.textColor = UIColor(rgb: 0x2acaea)
     }
     
+    func configureDatePicker() {
+        datepicker.preferredDatePickerStyle = .wheels
+        datepicker.sizeToFit()
+        if #available(iOS 14.0, *) {
+            datepicker.preferredDatePickerStyle = .inline
+        }
+    }
     
     // MARK: - IBActions
+    @IBAction func datePickersValueChanged(_ sender: UIDatePicker) {
+        
 
+        let datePicker = sender
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.timeZone = TimeZone(abbreviation: "GMT+00:00")
+        datePicker.timeZone = TimeZone(secondsFromGMT: 9 * 60 * 60)
+        datePicker.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        let latterDate = datePicker.date
+
+        switch count {
+        case 0:
+            let exactDate = specialDates[0]
+            guard let earlierDate = formatter.date(from: exactDate) else { return }
+            guard let days = (latterDate - earlierDate).day else { return }
+            label1.text = "D+" + String(days)
+            count += 1
+        case 1:
+            let exactDate = specialDates[1]
+            guard let earlierDate = formatter.date(from: exactDate) else { return }
+            guard let days = (latterDate - earlierDate).day else { return }
+            label2.text = "D+" + String(days)
+            count += 1
+        case 2:
+            let exactDate = specialDates[2]
+            guard let earlierDate = formatter.date(from: exactDate) else { return }
+            guard let days = (latterDate - earlierDate).day else { return }
+            label3.text = "D+" + String(days)
+            count += 1
+        case 3:
+            let exactDate = specialDates[3]
+            guard let earlierDate = formatter.date(from: exactDate) else { return }
+            guard let days = (latterDate - earlierDate).day else { return }
+            label4.text = "D+" + String(days)
+            count = 0
+        default:
+            break
+        }
+
+        
+    }
+    
 }
 
