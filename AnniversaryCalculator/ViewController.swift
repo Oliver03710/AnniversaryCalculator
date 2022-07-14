@@ -59,12 +59,17 @@ class ViewController: UIViewController {
         configureImages(image3, name: "anni3")
         configureImages(image4, name: "anni4")
 
-        configureLabels(label1)
-        configureLabels(label2)
-        configureLabels(label3)
-        configureLabels(label4)
+//        configureLabels(label1)
+//        configureLabels(label2)
+//        configureLabels(label3)
+//        configureLabels(label4)
         
-
+        configureLabels(label1, title: "D+100")
+        configureLabels(label2, title: "D+200")
+        configureLabels(label3, title: "D+300")
+        configureLabels(label4, title: "D+400")
+        
+        
     }
     
     func configureButtons(_ button: UIButton, title: String) {
@@ -84,8 +89,8 @@ class ViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
     }
     
-    func configureLabels(_ label: UILabel) {
-        label.text = ""
+    func configureLabels(_ label: UILabel, title: String) {
+        label.text = title
         label.font = .systemFont(ofSize: 25, weight: .bold)
         label.textColor = UIColor(rgb: 0x2acaea)
     }
@@ -108,33 +113,57 @@ class ViewController: UIViewController {
         formatter.timeZone = TimeZone(abbreviation: "GMT+00:00")
         datePicker.timeZone = TimeZone(secondsFromGMT: 9 * 60 * 60)
         datePicker.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy년 MM월 dd일"
-        let latterDate = datePicker.date
+        formatter.dateFormat = "yyyy년\nMM월 dd일"
+//        let latterDate = datePicker.date
+    
 
+        // 두 날짜 사이 일자 계산
+//        switch count {
+//        case 0:
+//            let exactDate = specialDates[0]
+//            guard let earlierDate = formatter.date(from: exactDate) else { return }
+//            guard let days = (latterDate - earlierDate).day else { return }
+//            label1.text = "D+" + String(days)
+//            count += 1
+//        case 1:
+//            let exactDate = specialDates[1]
+//            guard let earlierDate = formatter.date(from: exactDate) else { return }
+//            guard let days = (latterDate - earlierDate).day else { return }
+//            label2.text = "D+" + String(days)
+//            count += 1
+//        case 2:
+//            let exactDate = specialDates[2]
+//            guard let earlierDate = formatter.date(from: exactDate) else { return }
+//            guard let days = (latterDate - earlierDate).day else { return }
+//            label3.text = "D+" + String(days)
+//            count += 1
+//        case 3:
+//            let exactDate = specialDates[3]
+//            guard let earlierDate = formatter.date(from: exactDate) else { return }
+//            guard let days = (latterDate - earlierDate).day else { return }
+//            label4.text = "D+" + String(days)
+//            count = 0
+//        default:
+//            break
+//        }
+        
+//         며칠 뒤..
         switch count {
         case 0:
-            let exactDate = specialDates[0]
-            guard let earlierDate = formatter.date(from: exactDate) else { return }
-            guard let days = (latterDate - earlierDate).day else { return }
-            label1.text = "D+" + String(days)
+            let dates = datePicker.date + (86400 * 100)
+            button1.setTitle(formatter.string(from: dates), for: .normal)
             count += 1
         case 1:
-            let exactDate = specialDates[1]
-            guard let earlierDate = formatter.date(from: exactDate) else { return }
-            guard let days = (latterDate - earlierDate).day else { return }
-            label2.text = "D+" + String(days)
+            let dates = datePicker.date + (86400 * 200)
+            button2.setTitle(formatter.string(from: dates), for: .normal)
             count += 1
         case 2:
-            let exactDate = specialDates[2]
-            guard let earlierDate = formatter.date(from: exactDate) else { return }
-            guard let days = (latterDate - earlierDate).day else { return }
-            label3.text = "D+" + String(days)
+            let dates = datePicker.date + (86400 * 300)
+            button3.setTitle(formatter.string(from: dates), for: .normal)
             count += 1
         case 3:
-            let exactDate = specialDates[3]
-            guard let earlierDate = formatter.date(from: exactDate) else { return }
-            guard let days = (latterDate - earlierDate).day else { return }
-            label4.text = "D+" + String(days)
+            let dates = datePicker.date + (86400 * 400)
+            button4.setTitle(formatter.string(from: dates), for: .normal)
             count = 0
         default:
             break
