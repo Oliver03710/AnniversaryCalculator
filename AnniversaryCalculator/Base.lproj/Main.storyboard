@@ -91,6 +91,26 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rau-DA-a6U">
+                                <rect key="frame" x="99" y="52" width="92" height="34"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="SAVE DATE">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7RF-OW-yRJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqh-Lh-NTd">
+                                <rect key="frame" x="211" y="52" width="112" height="34"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="DELETE DATE">
+                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hOh-9z-R5M"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -116,6 +136,7 @@
                             <constraint firstItem="Zaw-7v-0jg" firstAttribute="top" secondItem="maN-pq-e2H" secondAttribute="top" id="Oot-Hp-Kwt"/>
                             <constraint firstItem="9tM-fv-4wa" firstAttribute="leading" secondItem="5Nh-ww-DU9" secondAttribute="trailing" constant="20" id="PZp-qV-5d4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="maN-pq-e2H" secondAttribute="bottom" constant="20" id="RCY-L8-tZo"/>
+                            <constraint firstItem="BMZ-8j-Gwt" firstAttribute="top" secondItem="Qqh-Lh-NTd" secondAttribute="bottom" constant="11" id="RQ1-9K-c4E"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BMZ-8j-Gwt" secondAttribute="trailing" id="VjQ-3B-3pd"/>
                             <constraint firstItem="hRJ-gC-TlY" firstAttribute="centerY" secondItem="5Nh-ww-DU9" secondAttribute="centerY" id="WPa-82-tO9"/>
                             <constraint firstItem="hRJ-gC-TlY" firstAttribute="centerX" secondItem="5Nh-ww-DU9" secondAttribute="centerX" id="WY9-so-XeB"/>
@@ -128,8 +149,10 @@
                             <constraint firstItem="PR6-c2-NsC" firstAttribute="top" secondItem="eSy-dS-2qJ" secondAttribute="top" id="ayS-fZ-56u"/>
                             <constraint firstItem="Iwo-EY-QR5" firstAttribute="top" secondItem="9tM-fv-4wa" secondAttribute="top" multiplier="1.02" id="bV5-ji-HL6"/>
                             <constraint firstItem="pAr-CN-pGX" firstAttribute="top" secondItem="eSy-dS-2qJ" secondAttribute="top" multiplier="1.02" id="cN3-Ez-n1a"/>
+                            <constraint firstItem="Qqh-Lh-NTd" firstAttribute="centerY" secondItem="rau-DA-a6U" secondAttribute="centerY" id="dOc-aa-hKN"/>
                             <constraint firstItem="2mZ-xN-a6m" firstAttribute="centerY" secondItem="9tM-fv-4wa" secondAttribute="centerY" id="drk-PE-5yt"/>
                             <constraint firstItem="hRJ-gC-TlY" firstAttribute="leading" secondItem="5Nh-ww-DU9" secondAttribute="leading" id="eBA-rV-LYw"/>
+                            <constraint firstItem="rau-DA-a6U" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="0.7" id="eEo-lD-FlU"/>
                             <constraint firstItem="MaC-VA-WBj" firstAttribute="top" secondItem="maN-pq-e2H" secondAttribute="top" multiplier="1.02" id="fFo-qX-o0f"/>
                             <constraint firstItem="hRJ-gC-TlY" firstAttribute="bottom" secondItem="5Nh-ww-DU9" secondAttribute="bottom" id="ger-uL-LMA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9tM-fv-4wa" secondAttribute="trailing" constant="20" id="ggr-Bs-sPE"/>
@@ -145,6 +168,8 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="maN-pq-e2H" secondAttribute="trailing" constant="20" id="qnT-Bc-HGZ"/>
                             <constraint firstItem="2mZ-xN-a6m" firstAttribute="bottom" secondItem="9tM-fv-4wa" secondAttribute="bottom" id="rrO-Bi-hIs"/>
                             <constraint firstItem="pAr-CN-pGX" firstAttribute="leading" secondItem="eSy-dS-2qJ" secondAttribute="leading" multiplier="1.7" id="ti3-Kd-hkx"/>
+                            <constraint firstItem="Qqh-Lh-NTd" firstAttribute="leading" secondItem="rau-DA-a6U" secondAttribute="trailing" constant="20" id="yIK-im-4OA"/>
+                            <constraint firstItem="BMZ-8j-Gwt" firstAttribute="top" secondItem="rau-DA-a6U" secondAttribute="bottom" constant="11" id="ylf-cu-hDp"/>
                         </constraints>
                     </view>
                     <connections>
@@ -171,6 +196,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

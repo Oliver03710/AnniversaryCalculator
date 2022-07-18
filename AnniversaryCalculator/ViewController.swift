@@ -33,7 +33,7 @@ class ViewController: UIViewController {
                         "2021년\n10월 13일",
                         "2022년\n01월 21일"]
     
-    var count = 0
+    let formatter = DateFormatter()
 
     
     // MARK: - Init
@@ -69,7 +69,17 @@ class ViewController: UIViewController {
         configureLabels(label3, title: "D+300")
         configureLabels(label4, title: "D+400")
         
+        guard let date1 = UserDefaults.standard.string(forKey: "dates1") else { return }
+        button1.setTitle(date1, for: .normal)
         
+        guard let date2 = UserDefaults.standard.string(forKey: "dates2") else { return }
+        button2.setTitle(date2, for: .normal)
+        
+        guard let date3 = UserDefaults.standard.string(forKey: "dates3") else { return }
+        button3.setTitle(date3, for: .normal)
+        
+        guard let date4 = UserDefaults.standard.string(forKey: "dates4") else { return }
+        button4.setTitle(date4, for: .normal)
     }
     
     func configureButtons(_ button: UIButton, title: String) {
@@ -106,12 +116,32 @@ class ViewController: UIViewController {
         }
     }
     
+    func showAlertController() {
+    //  흰 바탕 - UIAlertController
+        let alert = UIAlertController(title: "데이터 저장", message: "하시겠습니까?", preferredStyle: .alert)
+
+    //  버튼
+        let ok = UIAlertAction(title: "확인", style: .default) { action -> Void in
+            UserDefaults.standard.set(self.button1.titleLabel?.text, forKey: "dates1")
+            UserDefaults.standard.set(self.button2.titleLabel?.text, forKey: "dates2")
+            UserDefaults.standard.set(self.button3.titleLabel?.text, forKey: "dates3")
+            UserDefaults.standard.set(self.button4.titleLabel?.text, forKey: "dates4")
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+    //  1+2
+        alert.addAction(cancel)
+        alert.addAction(ok)
+
+    //  present
+        present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - IBActions
     @IBAction func datePickersValueChanged(_ sender: UIDatePicker) {
         
 
         let datePicker = sender
-        let formatter = DateFormatter()
+
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.timeZone = TimeZone(abbreviation: "GMT+00:00")
         datePicker.timeZone = TimeZone(secondsFromGMT: 9 * 60 * 60)
@@ -150,5 +180,14 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
+        showAlertController()
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        for i in 1...4 {
+            UserDefaults.standard.removeObject(forKey: "dates\(i)")
+        }
+    }
 }
 
